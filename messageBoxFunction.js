@@ -5,10 +5,10 @@ function Handle_MessageBox(
   nameCol,
   messageCol,
   filterCol,
-  filterValue
+  filterValue,
 ) {
   // URL để lấy dữ liệu từ Google Sheets
-  const sheetIDLoiChuc = "19bOY8qiLe1pd0IRxIej0smeHBc3KYFkuUgT19qqIZ84";
+  const sheetIDLoiChuc = "11MolXj4NyySh4TMXEMK8V3egDZM3Mi0QmtBe5a5EOOs";
   const urlLoiChuc = `https://docs.google.com/spreadsheets/d/${sheetIDLoiChuc}/gviz/tq?tqx=out:json`;
 
   fetch(urlLoiChuc)
@@ -19,7 +19,7 @@ function Handle_MessageBox(
       const parsed = JSON.parse(jsonText);
 
       const rows = parsed.table.rows.map((row) =>
-        row.c.map((cell) => cell?.v || "")
+        row.c.map((cell) => cell?.v || ""),
       );
       const headers = rows[0];
 
@@ -32,7 +32,7 @@ function Handle_MessageBox(
       });
 
       const getMessage = messages.filter(
-        (msg) => msg["Ai thấy lời chúc"] === "Mọi người"
+        (msg) => msg["Ai thấy lời chúc"] === "Mọi người",
       );
       const container = document.getElementById("MessageBox");
 
@@ -70,7 +70,7 @@ function Refesh_MessageBox(
   nameCol,
   messageCol,
   filterCol,
-  filterValue
+  filterValue,
 ) {
   $(document).ready(function () {
     $(triggerSelector).click(function () {
@@ -83,7 +83,7 @@ function Refesh_MessageBox(
           nameCol,
           messageCol,
           filterCol,
-          filterValue
+          filterValue,
         );
       }, 2000);
 
@@ -95,7 +95,7 @@ function Refesh_MessageBox(
           nameCol,
           messageCol,
           filterCol,
-          filterValue
+          filterValue,
         );
       }, 5000);
 
@@ -107,7 +107,7 @@ function Refesh_MessageBox(
           nameCol,
           messageCol,
           filterCol,
-          filterValue
+          filterValue,
         );
       }, 10000);
     });
@@ -122,7 +122,7 @@ function run_MessageBox(
   nameCol,
   messageCol,
   filterCol,
-  filterValue
+  filterValue,
 ) {
   Refesh_MessageBox(
     triggerSelector,
@@ -131,7 +131,7 @@ function run_MessageBox(
     nameCol,
     messageCol,
     filterCol,
-    filterValue
+    filterValue,
   );
   Handle_MessageBox(
     sheetId,
@@ -139,6 +139,6 @@ function run_MessageBox(
     nameCol,
     messageCol,
     filterCol,
-    filterValue
+    filterValue,
   );
 }
